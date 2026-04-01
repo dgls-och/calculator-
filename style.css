@@ -11,6 +11,20 @@ body {
 }
 
 #container {
-    width: 80%;
+    width: 400px;
     margin: auto;
+}
+
+#calculator {
+    border: 1px solid;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+.display {
+    border: 1px solid;
+    border-radius: 16px;
+    font-size: 1.5em;
+    text-align: right;
+    padding: 16px;
 }
