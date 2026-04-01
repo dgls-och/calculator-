@@ -14,3 +14,6 @@ function findMultiple(num1, num2) {
     return num1 * num2;
 }
 
+let firstOperand;
+let operator;
+let secondOperand;
