@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    border: 2px solid;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 }
 
 #container {
-    width: 400px;
+    width: 300px;
     margin: auto;
 }
 
@@ -33,4 +34,24 @@ body {
 .button-container {
     margin-top: 8px;
     display: flex;
+    padding: 8px;
+    gap: 8px;
+}
+
+.operator-buttons {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.num-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+button {
+    font-size: 1.5em;
+    width: 50px;
+    padding: 8px;
 }
