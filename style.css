@@ -10,21 +10,27 @@ body {
     padding: 16px;
 }
 
+.border {
+    border: 1px solid;
+    border-radius: 16px;
+}
+
 #container {
     width: 400px;
     margin: auto;
 }
 
 #calculator {
-    border: 1px solid;
-    border-radius: 16px;
     padding: 8px;
 }
 
 .display {
-    border: 1px solid;
-    border-radius: 16px;
     font-size: 1.5em;
     text-align: right;
     padding: 16px;
+}
+
+.button-container {
+    margin-top: 8px;
+    display: flex;
 }
