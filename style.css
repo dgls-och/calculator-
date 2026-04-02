@@ -25,10 +25,11 @@ body {
 }
 
 .display {
+    height: 100px;
     font-size: 1.5em;
     font-family: 'Courier New', Courier, monospace;
     text-align: right;
-    padding: 64px 8px 16px;
+    padding: 64px 8px 0;
 }
 
 .button-container {
