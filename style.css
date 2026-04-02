@@ -59,6 +59,10 @@ button {
     background-color: inherit;
 }
 
+button:hover {
+    border: 2px solid;
+}
+
 button[id="clear"] {
     color: #e00;
     background-color: #e003;
