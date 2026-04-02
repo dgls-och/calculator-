@@ -54,4 +54,15 @@ button {
     font-size: 1.5em;
     width: 50px;
     padding: 8px;
+    background-color: inherit;
+}
+
+button[id="clear"] {
+    color: #e00;
+    background-color: #e003;
+}
+
+button[id="="] {
+    color: #00a;
+    background-color: #00a3;
 }
