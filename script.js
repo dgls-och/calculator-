@@ -28,7 +28,11 @@ function findDifference(num1, num2) {
 }
 
 function findQuotient(num1, num2) {
-    return num1 / num2;
+    if (num2 === 0) {
+        throw "ERR: division by zero";
+    } else {
+        return num1 / num2;
+    }
 }
 
 function findMultiple(num1, num2) {
@@ -52,4 +56,4 @@ function operate(operator, firstOperand, secondOperand) {
         return findQuotient(firstOperand, secondOperand);
     }
 }
-
+console.log(operate("/", 5, 0))
