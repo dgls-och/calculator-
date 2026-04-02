@@ -17,7 +17,22 @@ numButtons.forEach(button => button.addEventListener('click', e => {
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
     console.log(`Button ${button.id} clicked!`);
-}))
+}));
+
+function setFirstOperand(operand) {
+    firstOperand = operand;
+    calDisplay.textContent = firstOperand;
+}
+
+function setSecondOperand(operand) {
+    secondOperand = operand;
+    calDisplay.textContent = secondOperand;
+}
+
+function setOperator(operand) {
+    operator = operand;
+    calDisplay.textContent = operator;
+}
 
 function findSum(num1, num2) {
     return num1 + num2;
@@ -29,7 +44,7 @@ function findDifference(num1, num2) {
 
 function findQuotient(num1, num2) {
     if (num2 === 0) {
-        throw "ERR: division by zero";
+        return "ERR: division by zero";
     } else {
         return num1 / num2;
     }
@@ -56,4 +71,4 @@ function operate(operator, firstOperand, secondOperand) {
         return findQuotient(firstOperand, secondOperand);
     }
 }
-console.log(operate("/", 5, 0))
+console.log(operate("/", 5, 0));
