@@ -114,7 +114,7 @@ function evaluateNumButtons(button) {
 }
 
 function evaluateOperatorButtons(button) {
-    if (firstOperand.length > 0 && secondOperand.length == 0) {
+    if (firstOperand.length > 0 && secondOperand.length == 0 && !operator) {
         if (button.id === "del") {
             firstOperand.pop();
             let newValue = stringnumberToNum(firstOperand.join(""));
@@ -127,17 +127,6 @@ function evaluateOperatorButtons(button) {
         }
     }
 
-    /*if (
-        firstOperand.length > 0
-        && secondOperand.length == 0
-        && (typeof operator) === "string"
-    ) {
-        if (button.id === "del") {
-            operator = undefined;
-            console.log(firstOperand, operator, secondOperand);
-        }
-    }*/
-    
     if (
         firstOperand.length > 0
         && secondOperand.length > 0
@@ -148,10 +137,6 @@ function evaluateOperatorButtons(button) {
             let newValue = stringnumberToNum(secondOperand.join(""));
             calDisplay.textContent = secondOperand.length > 0
                 ? newValue : 0;
-            if(calDisplay.textContent == 0) {
-                calDisplay.textContent = operator;
-                operator = undefined;
-            }
             console.log(firstOperand, operator, secondOperand);
         } else {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
@@ -161,6 +146,19 @@ function evaluateOperatorButtons(button) {
             firstOperand = [], secondOperand = [], operator = button.id;
             firstOperand.push(result);
             console.log(firstOperand, operator, secondOperand);
+        }
+    }
+
+    if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
+        if (button.id == "del") {
+            if (calDisplay.textContent == 0) {
+                calDisplay.textContent = operator;
+                console.log(firstOperand, operator, secondOperand);
+            } else if (calDisplay.textContent == operator) {
+                operator = undefined;
+                calDisplay.textContent = stringnumberToNum(firstOperand.join(""));
+                console.log(firstOperand, operator, secondOperand);
+            }
         }
     }
 }
