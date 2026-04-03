@@ -10,48 +10,14 @@ numButtons.forEach(button => button.addEventListener('click', e => {
     if (button.id === "clear") {
         clearAll();
         console.log(firstOperand, operator, secondOperand);
-    } else if (button.id === "=") {
-        if (
-            firstOperand.length > 0
-            && secondOperand.length > 0
-            && (typeof operator) === "string"
-        ) {
-            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-            let result = operate(operator, firstOperandNum, secondOperandNum);
-            calDisplay.textContent = result;
-            firstOperand = [], secondOperand = [], operator = undefined;
-            console.log(firstOperand, operator, secondOperand);
-        }
-    } else if (operator === undefined) {
-        setFirstOperand(button.id);
-        console.log(firstOperand, operator, secondOperand);
-    } else if (typeof operator === "string") {
-        setSecondOperand(button.id);
-        console.log(firstOperand, operator, secondOperand);
+    } else {
+        evaluateCondition(button);
     }
 }));
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    if (firstOperand.length > 0 && secondOperand.length == 0) {
-        setOperator(button.id);
-        console.log(firstOperand, operator, secondOperand);
-    }
-
-    if (
-        firstOperand.length > 0
-        && secondOperand.length > 0
-        && (typeof operator) === "string"
-    ) {
-        let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-        let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-        let result = operate(operator, firstOperandNum, secondOperandNum);
-        calDisplay.textContent = result;
-        firstOperand = [], secondOperand = [], operator = button.id;
-        firstOperand.push(result);
-        console.log(firstOperand, operator, secondOperand);
-    }
+    evaluateCondition(button);
 }));
 
 function clearAll() {
@@ -123,3 +89,51 @@ function operate(operator, firstOperand, secondOperand) {
     }
 }
 console.log(operate("/", 5, 0));
+
+function evaluateCondition(button) {
+    if (button.id === "=") {
+        if (
+            firstOperand.length > 0
+            && secondOperand.length > 0
+            && (typeof operator) === "string"
+        ) {
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
+            firstOperand = [], secondOperand = [], operator = undefined;
+            console.log(firstOperand, operator, secondOperand);
+        }
+    } else if (operator === undefined) {
+        setFirstOperand(button.id);
+        console.log(firstOperand, operator, secondOperand);
+    } else if (typeof operator === "string") {
+        setSecondOperand(button.id);
+        console.log(firstOperand, operator, secondOperand);
+    }
+
+    //evaluates operatorButtons
+    if (
+        button.id == "+" || button.id == "-"
+        || button.id == "/" || button.id == "*"
+    ) {
+        if (firstOperand.length > 0 && secondOperand.length == 0) {
+            setOperator(button.id);
+            console.log(firstOperand, operator, secondOperand);
+        }
+
+        if (
+            firstOperand.length > 0
+            && secondOperand.length > 0
+            && (typeof operator) === "string"
+        ) {
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
+            firstOperand = [], secondOperand = [], operator = button.id;
+            firstOperand.push(result);
+            console.log(firstOperand, operator, secondOperand);
+        }
+    }
+}
