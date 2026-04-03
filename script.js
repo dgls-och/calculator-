@@ -15,23 +15,29 @@ numButtons.forEach(button => button.addEventListener('click', e => {
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    setOperator(button.id);
+    if ((typeof firstOperand === "number")) {
+        setOperator(button.id);
+    }
 }));
 
 function clearAll() {
-  firstOperand = undefined;
-  secondOperand = undefined;
-  operator = undefined;
-  result = 0;
-  calDisplay.textContent = "";
+    firstOperand = undefined;
+    secondOperand = undefined;
+    operator = undefined;
+    result = 0;
+    calDisplay.textContent = "";
 }
 
 function setFirstOperand(operand) {
+    operand = Number.isInteger(operand) ? operand = parseInt(operand) 
+                                        : operand = parseFloat(operand);
     firstOperand = operand;
     calDisplay.textContent = firstOperand;
 }
 
 function setSecondOperand(operand) {
+    operand = Number.isInteger(operand) ? operand = parseInt(operand) 
+                                        : operand = parseFloat(operand);
     secondOperand = operand;
     calDisplay.textContent = secondOperand;
 }
