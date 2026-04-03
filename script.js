@@ -21,8 +21,8 @@ operatorButtons.forEach(button => button.addEventListener('click', e => {
 }));
 
 function clearAll() {
-    firstOperand = undefined;
-    secondOperand = undefined;
+    firstOperand = [];
+    secondOperand = [];
     operator = undefined;
     result = 0;
     calDisplay.textContent = "";
