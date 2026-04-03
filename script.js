@@ -115,21 +115,52 @@ function evaluateNumButtons(button) {
 
 function evaluateOperatorButtons(button) {
     if (firstOperand.length > 0 && secondOperand.length == 0) {
-        setOperator(button.id);
-        console.log(firstOperand, operator, secondOperand);
+        if (button.id === "del") {
+            firstOperand.pop();
+            let newValue = stringnumberToNum(firstOperand.join(""));
+            calDisplay.textContent = firstOperand.length > 0
+                ? newValue : 0;
+            console.log(firstOperand, operator, secondOperand);
+        } else {
+            setOperator(button.id);
+            console.log(firstOperand, operator, secondOperand);
+        }
     }
 
+    /*if (
+        firstOperand.length > 0
+        && secondOperand.length == 0
+        && (typeof operator) === "string"
+    ) {
+        if (button.id === "del") {
+            operator = undefined;
+            console.log(firstOperand, operator, secondOperand);
+        }
+    }*/
+    
     if (
         firstOperand.length > 0
         && secondOperand.length > 0
         && (typeof operator) === "string"
     ) {
-        let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-        let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-        let result = operate(operator, firstOperandNum, secondOperandNum);
-        calDisplay.textContent = result;
-        firstOperand = [], secondOperand = [], operator = button.id;
-        firstOperand.push(result);
-        console.log(firstOperand, operator, secondOperand);
+        if (button.id === "del") {
+            secondOperand.pop();
+            let newValue = stringnumberToNum(secondOperand.join(""));
+            calDisplay.textContent = secondOperand.length > 0
+                ? newValue : 0;
+            if(calDisplay.textContent == 0) {
+                calDisplay.textContent = operator;
+                operator = undefined;
+            }
+            console.log(firstOperand, operator, secondOperand);
+        } else {
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
+            firstOperand = [], secondOperand = [], operator = button.id;
+            firstOperand.push(result);
+            console.log(firstOperand, operator, secondOperand);
+        }
     }
 }
