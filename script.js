@@ -4,19 +4,40 @@ const operatorButtons = document.querySelectorAll(".operator-buttons > button");
 let firstOperand = [];
 let operator;
 let secondOperand = [];
-let result = 0;
 
 numButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
     if (button.id === "clear") {
         clearAll();
+        console.log(firstOperand, operator, secondOperand);
+    } else if (button.id === "=") {
+        if (
+            firstOperand.length > 0 
+            && secondOperand.length > 0 
+            && (typeof operator) === "string"
+        ) {
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
+            firstOperand = [], secondOperand = [];
+            firstOperand.push(result);
+            console.log(firstOperand, operator, secondOperand);
+        }
+    } else if (operator === undefined) {
+        setFirstOperand(button.id);
+        console.log(firstOperand, operator, secondOperand);
+    } else if (typeof operator === "string") {
+        setSecondOperand(button.id);
+        console.log(firstOperand, operator, secondOperand);
     }
 }));
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    if ((typeof firstOperand === "number")) {
+    if (firstOperand.length > 0) {
         setOperator(button.id);
+        console.log(firstOperand, operator, secondOperand);
     }
 }));
 
@@ -24,25 +45,24 @@ function clearAll() {
     firstOperand = [];
     secondOperand = [];
     operator = undefined;
-    result = 0;
     calDisplay.textContent = "";
 }
 
-function stringnumberToNum (str) {
+function stringnumberToNum(str) {
     return Number.isInteger(str) ? operand = parseInt(str)
         : operand = parseFloat(str);
 }
 
 function setFirstOperand(operand) {
     firstOperand.push(operand);
-    firstOperandCopy = [...firstOperand];
+    let firstOperandCopy = [...firstOperand];
     output = stringnumberToNum(firstOperandCopy.join(""));
     calDisplay.textContent = output;
 }
 
 function setSecondOperand(operand) {
     secondOperand.push(operand);
-    secondOperandCopy = [...secondOperand];
+    let secondOperandCopy = [...secondOperand];
     output = stringnumberToNum(secondOperandCopy.join(""));
     calDisplay.textContent = output;
 }
