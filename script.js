@@ -11,13 +11,13 @@ numButtons.forEach(button => button.addEventListener('click', e => {
         clearAll();
         console.log(firstOperand, operator, secondOperand);
     } else {
-        evaluateCondition(button);
+        evaluateNumButtons(button);
     }
 }));
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    evaluateCondition(button);
+    evaluateOperatorButtons(button);
 }));
 
 function clearAll() {
@@ -90,7 +90,7 @@ function operate(operator, firstOperand, secondOperand) {
 }
 console.log(operate("/", 5, 0));
 
-function evaluateCondition(button) {
+function evaluateNumButtons(button) {
     if (button.id === "=") {
         if (
             firstOperand.length > 0
@@ -111,29 +111,25 @@ function evaluateCondition(button) {
         setSecondOperand(button.id);
         console.log(firstOperand, operator, secondOperand);
     }
+}
 
-    //evaluates operatorButtons
+function evaluateOperatorButtons(button) {
+    if (firstOperand.length > 0 && secondOperand.length == 0) {
+        setOperator(button.id);
+        console.log(firstOperand, operator, secondOperand);
+    }
+
     if (
-        button.id == "+" || button.id == "-"
-        || button.id == "/" || button.id == "*"
+        firstOperand.length > 0
+        && secondOperand.length > 0
+        && (typeof operator) === "string"
     ) {
-        if (firstOperand.length > 0 && secondOperand.length == 0) {
-            setOperator(button.id);
-            console.log(firstOperand, operator, secondOperand);
-        }
-
-        if (
-            firstOperand.length > 0
-            && secondOperand.length > 0
-            && (typeof operator) === "string"
-        ) {
-            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-            let result = operate(operator, firstOperandNum, secondOperandNum);
-            calDisplay.textContent = result;
-            firstOperand = [], secondOperand = [], operator = button.id;
-            firstOperand.push(result);
-            console.log(firstOperand, operator, secondOperand);
-        }
+        let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+        let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+        let result = operate(operator, firstOperandNum, secondOperandNum);
+        calDisplay.textContent = result;
+        firstOperand = [], secondOperand = [], operator = button.id;
+        firstOperand.push(result);
+        console.log(firstOperand, operator, secondOperand);
     }
 }
