@@ -1,9 +1,9 @@
 const calDisplay = document.querySelector(".display");
 const numButtons = document.querySelectorAll(".num-buttons > button");
 const operatorButtons = document.querySelectorAll(".operator-buttons > button");
-let firstOperand;
+let firstOperand = [];
 let operator;
-let secondOperand;
+let secondOperand = [];
 let result = 0;
 
 numButtons.forEach(button => button.addEventListener('click', e => {
@@ -28,18 +28,23 @@ function clearAll() {
     calDisplay.textContent = "";
 }
 
+function stringnumberToNum (str) {
+    return Number.isInteger(str) ? operand = parseInt(str)
+        : operand = parseFloat(str);
+}
+
 function setFirstOperand(operand) {
-    operand = Number.isInteger(operand) ? operand = parseInt(operand) 
-                                        : operand = parseFloat(operand);
-    firstOperand = operand;
-    calDisplay.textContent = firstOperand;
+    firstOperand.push(operand);
+    firstOperandCopy = [...firstOperand];
+    output = stringnumberToNum(firstOperandCopy.join(""));
+    calDisplay.textContent = output;
 }
 
 function setSecondOperand(operand) {
-    operand = Number.isInteger(operand) ? operand = parseInt(operand) 
-                                        : operand = parseFloat(operand);
-    secondOperand = operand;
-    calDisplay.textContent = secondOperand;
+    secondOperand.push(operand);
+    secondOperandCopy = [...secondOperand];
+    output = stringnumberToNum(secondOperandCopy.join(""));
+    calDisplay.textContent = output;
 }
 
 function setOperator(operand) {
