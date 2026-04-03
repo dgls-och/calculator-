@@ -12,16 +12,15 @@ numButtons.forEach(button => button.addEventListener('click', e => {
         console.log(firstOperand, operator, secondOperand);
     } else if (button.id === "=") {
         if (
-            firstOperand.length > 0 
-            && secondOperand.length > 0 
+            firstOperand.length > 0
+            && secondOperand.length > 0
             && (typeof operator) === "string"
         ) {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
             let secondOperandNum = stringnumberToNum(secondOperand.join(""));
             let result = operate(operator, firstOperandNum, secondOperandNum);
             calDisplay.textContent = result;
-            firstOperand = [], secondOperand = [];
-            firstOperand.push(result);
+            firstOperand = [], secondOperand = [], operator = undefined;
             console.log(firstOperand, operator, secondOperand);
         }
     } else if (operator === undefined) {
@@ -35,8 +34,22 @@ numButtons.forEach(button => button.addEventListener('click', e => {
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    if (firstOperand.length > 0) {
+    if (firstOperand.length > 0 && secondOperand.length == 0) {
         setOperator(button.id);
+        console.log(firstOperand, operator, secondOperand);
+    }
+
+    if (
+        firstOperand.length > 0
+        && secondOperand.length > 0
+        && (typeof operator) === "string"
+    ) {
+        let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+        let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+        let result = operate(operator, firstOperandNum, secondOperandNum);
+        calDisplay.textContent = result;
+        firstOperand = [], secondOperand = [], operator = button.id;
+        firstOperand.push(result);
         console.log(firstOperand, operator, secondOperand);
     }
 }));
