@@ -4,20 +4,27 @@ const operatorButtons = document.querySelectorAll(".operator-buttons > button");
 let firstOperand;
 let operator;
 let secondOperand;
+let result = 0;
 
 numButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
     if (button.id === "clear") {
-        calDisplay.textContent = "";
-    } else {
-        calDisplay.textContent = button.id;
+        clearAll();
     }
 }));
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    console.log(`Button ${button.id} clicked!`);
+    setOperator(button.id);
 }));
+
+function clearAll() {
+  firstOperand = undefined;
+  secondOperand = undefined;
+  operator = undefined;
+  result = 0;
+  calDisplay.textContent = "";
+}
 
 function setFirstOperand(operand) {
     firstOperand = operand;
