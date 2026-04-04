@@ -126,6 +126,18 @@ function evaluateNumButtons(button) {
             console.log(firstOperand, operator, secondOperand);
         }
     }
+
+    if (firstOperand.length > 0 && operator) {
+        if (button.id === ".") {
+            setFirstOperand("0");
+            setFirstOperand(button.id);
+            button.disabled = true;
+            console.log(firstOperand, operator, secondOperand);
+        } else {
+            setFirstOperand(button.id);
+            console.log(firstOperand, operator, secondOperand);
+        }
+    }
 }
 
 function evaluateOperatorButtons(button) {
