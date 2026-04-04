@@ -133,7 +133,7 @@ function evaluateOperatorButtons(button) {
             firstOperand.pop();
             let newValue = stringnumberToNum(firstOperand.join(""));
             calDisplay.textContent = firstOperand.length > 0
-                ? newValue : 0;
+                ? newValue : "";
             console.log(firstOperand, operator, secondOperand);
         } else {
             setOperator(button.id);
