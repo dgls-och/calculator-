@@ -138,10 +138,12 @@ function evaluateNumButtons(button) {
 function evaluateOperatorButtons(button) {
     if (firstOperand.length > 0 && secondOperand.length == 0 && !operator) {
         if (button.id === "del") {
-            firstOperand.pop();
+            let removedValue = firstOperand.pop();
+            //console.log(typeof removedValue)
             let newValue = firstOperand.join("");
             calDisplay.textContent = firstOperand.length > 0
                 ? newValue : "";
+            if (removedValue === ".") enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         } else {
             setOperator(button.id);
@@ -156,10 +158,11 @@ function evaluateOperatorButtons(button) {
         && (typeof operator) === "string"
     ) {
         if (button.id === "del") {
-            secondOperand.pop();
+            let removedValue = secondOperand.pop();
             let newValue = secondOperand.join("");
             calDisplay.textContent = secondOperand.length > 0
                 ? newValue : 0;
+            if (removedValue === ".") enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         } else {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
