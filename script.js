@@ -129,12 +129,12 @@ function evaluateNumButtons(button) {
 
     if (firstOperand.length > 0 && operator) {
         if (button.id === ".") {
-            setFirstOperand("0");
-            setFirstOperand(button.id);
+            setSecondOperand("0");
+            setSecondOperand(button.id);
             button.disabled = true;
             console.log(firstOperand, operator, secondOperand);
         } else {
-            setFirstOperand(button.id);
+            setSecondOperand(button.id);
             console.log(firstOperand, operator, secondOperand);
         }
     }
