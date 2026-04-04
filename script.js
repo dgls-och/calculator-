@@ -9,7 +9,6 @@ numButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
     if (button.id === "clear") {
         clearAll();
-        console.log(firstOperand, operator, secondOperand);
     } else {
         evaluateNumButtons(button);
     }
@@ -87,7 +86,6 @@ function operate(operator, firstOperand, secondOperand) {
         return findQuotient(firstOperand, secondOperand);
     }
 }
-console.log(operate("/", 5, 0));
 
 function evaluateNumButtons(button) {
     if (button.id === "=") {
@@ -98,7 +96,6 @@ function evaluateNumButtons(button) {
             calDisplay.textContent = result;
             firstOperand = [], secondOperand = [], operator = undefined;
             enableDotBttn();
-            console.log(firstOperand, operator, secondOperand);
         }
     } else if (secondOperand.length == 0 && !operator) {
         if (button.id === ".") {
@@ -106,15 +103,12 @@ function evaluateNumButtons(button) {
                 setFirstOperand("0");
                 setFirstOperand(button.id);
                 button.disabled = true;
-                console.log(firstOperand, operator, secondOperand);
             } else {
                 setFirstOperand(button.id);
                 button.disabled = true;
-                console.log(firstOperand, operator, secondOperand);
             }
         } else {
             setFirstOperand(button.id);
-            console.log(firstOperand, operator, secondOperand);
         }
     } else if (firstOperand.length > 0 && operator) {
         if (button.id === ".") {
@@ -122,15 +116,12 @@ function evaluateNumButtons(button) {
                 setSecondOperand("0");
                 setSecondOperand(button.id);
                 button.disabled = true;
-                console.log(firstOperand, operator, secondOperand);
             } else {
                 setSecondOperand(button.id);
                 button.disabled = true;
-                console.log(firstOperand, operator, secondOperand);
             }
         } else {
             setSecondOperand(button.id);
-            console.log(firstOperand, operator, secondOperand);
         }
     }
 }
@@ -139,16 +130,13 @@ function evaluateOperatorButtons(button) {
     if (firstOperand.length > 0 && secondOperand.length == 0 && !operator) {
         if (button.id === "del") {
             let removedValue = firstOperand.pop();
-            //console.log(typeof removedValue)
             let newValue = firstOperand.join("");
             calDisplay.textContent = firstOperand.length > 0
                 ? newValue : "";
             if (removedValue === ".") enableDotBttn();
-            console.log(firstOperand, operator, secondOperand);
         } else {
             setOperator(button.id);
             enableDotBttn();
-            console.log(firstOperand, operator, secondOperand);
         }
     }
 
@@ -163,7 +151,6 @@ function evaluateOperatorButtons(button) {
             calDisplay.textContent = secondOperand.length > 0
                 ? newValue : 0;
             if (removedValue === ".") enableDotBttn();
-            console.log(firstOperand, operator, secondOperand);
         } else {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
             let secondOperandNum = stringnumberToNum(secondOperand.join(""));
@@ -172,7 +159,6 @@ function evaluateOperatorButtons(button) {
             firstOperand = [], secondOperand = [], operator = button.id;
             firstOperand.push(result.toString());
             enableDotBttn();
-            console.log(firstOperand, operator, secondOperand);
         }
     }
 
@@ -180,11 +166,9 @@ function evaluateOperatorButtons(button) {
         if (button.id == "del") {
             if (calDisplay.textContent == 0) {
                 calDisplay.textContent = operator;
-                console.log(firstOperand, operator, secondOperand);
             } else if (calDisplay.textContent == operator) {
                 operator = undefined;
                 calDisplay.textContent = firstOperand.join("");
-                console.log(firstOperand, operator, secondOperand);
             }
         }
     }
