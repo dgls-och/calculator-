@@ -90,12 +90,12 @@ function operate(operator, firstOperand, secondOperand) {
 console.log(operate("/", 5, 0));
 
 function evaluateNumButtons(button) {
-    /*if (
-        firstOperand.length > 0
-        && secondOperand.length > 0
-        && (typeof operator) === "string"
-    ) {
-        if (button.id === "=") {
+    if (button.id === "=") {
+        if (
+            firstOperand.length > 0
+            && secondOperand.length > 0
+            && operator
+        ) {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
             let secondOperandNum = stringnumberToNum(secondOperand.join(""));
             let result = operate(operator, firstOperandNum, secondOperandNum);
@@ -104,18 +104,7 @@ function evaluateNumButtons(button) {
             enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         }
-        else if (button.id === ".") {
-            setFirstOperand("0");
-            setFirstOperand(button.id);
-            button.disabled = true;
-            console.log(firstOperand, operator, secondOperand);
-        } else {
-            setFirstOperand(button.id);
-            console.log(firstOperand, operator, secondOperand);
-        }
-    }*/
-
-    if (secondOperand.length == 0 && !operator) {
+    } else if (secondOperand.length == 0 && !operator) {
         if (button.id === ".") {
             setFirstOperand("0");
             setFirstOperand(button.id);
@@ -125,9 +114,7 @@ function evaluateNumButtons(button) {
             setFirstOperand(button.id);
             console.log(firstOperand, operator, secondOperand);
         }
-    }
-
-    if (firstOperand.length > 0 && operator) {
+    } else if (firstOperand.length > 0 && operator) {
         if (button.id === ".") {
             setSecondOperand("0");
             setSecondOperand(button.id);
