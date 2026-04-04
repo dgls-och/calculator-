@@ -89,17 +89,13 @@ function operate(operator, firstOperand, secondOperand) {
 }
 console.log(operate("/", 5, 0));
 
-function findResult() {
-    let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-    let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-    let result = operate(operator, firstOperandNum, secondOperandNum);
-    calDisplay.textContent = result;
-}
-
 function evaluateNumButtons(button) {
     if (button.id === "=") {
         if (firstOperand.length > 0 && secondOperand.length > 0 && operator) {
-            findResult();
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
             firstOperand = [], secondOperand = [], operator = undefined;
             enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
@@ -169,7 +165,10 @@ function evaluateOperatorButtons(button) {
             if (removedValue === ".") enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         } else {
-            findResult();
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
             firstOperand = [], secondOperand = [], operator = button.id;
             firstOperand.push(result.toString());
             enableDotBttn();
