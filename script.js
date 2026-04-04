@@ -167,7 +167,8 @@ function evaluateOperatorButtons(button) {
             let result = operate(operator, firstOperandNum, secondOperandNum);
             calDisplay.textContent = result;
             firstOperand = [], secondOperand = [], operator = button.id;
-            firstOperand.push(result);
+            firstOperand.push(result.toString());
+            enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         }
     }
