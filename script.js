@@ -90,12 +90,12 @@ function operate(operator, firstOperand, secondOperand) {
 console.log(operate("/", 5, 0));
 
 function evaluateNumButtons(button) {
-    if (button.id === "=") {
-        if (
-            firstOperand.length > 0
-            && secondOperand.length > 0
-            && (typeof operator) === "string"
-        ) {
+    /*if (
+        firstOperand.length > 0
+        && secondOperand.length > 0
+        && (typeof operator) === "string"
+    ) {
+        if (button.id === "=") {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
             let secondOperandNum = stringnumberToNum(secondOperand.join(""));
             let result = operate(operator, firstOperandNum, secondOperandNum);
@@ -104,28 +104,27 @@ function evaluateNumButtons(button) {
             enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         }
-    } else if (operator === undefined) {
-        if (button.id === ".") {
-            if (firstOperand.length == 0 && secondOperand.length == 0) {
-                setFirstOperand("0");
-                setFirstOperand(button.id);
-                button.disabled = true;
-                console.log(firstOperand, operator, secondOperand);
-            }
-            
-            if (secondOperand.length == 0 && secondOperand.length > 0) {
-                setSecondOperand("0");
-                setSecondOperand(button.id);
-                button.disabled = true;
-                console.log(firstOperand, operator, secondOperand);
-            }
+        else if (button.id === ".") {
+            setFirstOperand("0");
+            setFirstOperand(button.id);
+            button.disabled = true;
+            console.log(firstOperand, operator, secondOperand);
         } else {
             setFirstOperand(button.id);
             console.log(firstOperand, operator, secondOperand);
         }
-    } else if (typeof operator === "string") {
-        setSecondOperand(button.id);
-        console.log(firstOperand, operator, secondOperand);
+    }*/
+
+    if (secondOperand.length == 0 && !operator) {
+        if (button.id === ".") {
+            setFirstOperand("0");
+            setFirstOperand(button.id);
+            button.disabled = true;
+            console.log(firstOperand, operator, secondOperand);
+        } else {
+            setFirstOperand(button.id);
+            console.log(firstOperand, operator, secondOperand);
+        }
     }
 }
 
@@ -180,6 +179,6 @@ function evaluateOperatorButtons(button) {
     }
 }
 
-function enableDotBttn () {
+function enableDotBttn() {
     document.querySelector("button[id='.']").disabled = false;
 }
