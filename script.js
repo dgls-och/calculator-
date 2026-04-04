@@ -25,6 +25,7 @@ function clearAll() {
     secondOperand = [];
     operator = undefined;
     calDisplay.textContent = "";
+    enableDotBttn();
 }
 
 function stringnumberToNum(str) {
@@ -100,6 +101,7 @@ function evaluateNumButtons(button) {
             let result = operate(operator, firstOperandNum, secondOperandNum);
             calDisplay.textContent = result;
             firstOperand = [], secondOperand = [], operator = undefined;
+            enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         }
     } else if (operator === undefined) {
@@ -137,6 +139,7 @@ function evaluateOperatorButtons(button) {
             console.log(firstOperand, operator, secondOperand);
         } else {
             setOperator(button.id);
+            enableDotBttn();
             console.log(firstOperand, operator, secondOperand);
         }
     }
@@ -175,4 +178,8 @@ function evaluateOperatorButtons(button) {
             }
         }
     }
+}
+
+function enableDotBttn () {
+    document.querySelector("button[id='.']").disabled = false;
 }
