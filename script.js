@@ -139,7 +139,7 @@ function evaluateOperatorButtons(button) {
     if (firstOperand.length > 0 && secondOperand.length == 0 && !operator) {
         if (button.id === "del") {
             firstOperand.pop();
-            let newValue = stringnumberToNum(firstOperand.join(""));
+            let newValue = firstOperand.join("");
             calDisplay.textContent = firstOperand.length > 0
                 ? newValue : "";
             console.log(firstOperand, operator, secondOperand);
@@ -157,7 +157,7 @@ function evaluateOperatorButtons(button) {
     ) {
         if (button.id === "del") {
             secondOperand.pop();
-            let newValue = stringnumberToNum(secondOperand.join(""));
+            let newValue = secondOperand.join("");
             calDisplay.textContent = secondOperand.length > 0
                 ? newValue : 0;
             console.log(firstOperand, operator, secondOperand);
@@ -180,7 +180,7 @@ function evaluateOperatorButtons(button) {
                 console.log(firstOperand, operator, secondOperand);
             } else if (calDisplay.textContent == operator) {
                 operator = undefined;
-                calDisplay.textContent = stringnumberToNum(firstOperand.join(""));
+                calDisplay.textContent = firstOperand.join("");
                 console.log(firstOperand, operator, secondOperand);
             }
         }
