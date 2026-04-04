@@ -35,15 +35,13 @@ function stringnumberToNum(str) {
 function setFirstOperand(operand) {
     firstOperand.push(operand);
     let firstOperandCopy = [...firstOperand];
-    output = stringnumberToNum(firstOperandCopy.join(""));
-    calDisplay.textContent = output;
+    calDisplay.textContent = firstOperandCopy.join("");
 }
 
 function setSecondOperand(operand) {
     secondOperand.push(operand);
     let secondOperandCopy = [...secondOperand];
-    output = stringnumberToNum(secondOperandCopy.join(""));
-    calDisplay.textContent = output;
+    calDisplay.textContent = secondOperandCopy.join("");
 }
 
 function setOperator(operand) {
@@ -105,8 +103,12 @@ function evaluateNumButtons(button) {
             console.log(firstOperand, operator, secondOperand);
         }
     } else if (operator === undefined) {
-        setFirstOperand(button.id);
-        console.log(firstOperand, operator, secondOperand);
+        if (button.id === ".") {
+            //start here
+        } else {
+            setFirstOperand(button.id);
+            console.log(firstOperand, operator, secondOperand);
+        }
     } else if (typeof operator === "string") {
         setSecondOperand(button.id);
         console.log(firstOperand, operator, secondOperand);
