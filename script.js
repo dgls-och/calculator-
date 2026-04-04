@@ -104,7 +104,19 @@ function evaluateNumButtons(button) {
         }
     } else if (operator === undefined) {
         if (button.id === ".") {
-            //start here
+            if (firstOperand.length == 0 && secondOperand.length == 0) {
+                setFirstOperand("0");
+                setFirstOperand(button.id);
+                button.disabled = true;
+                console.log(firstOperand, operator, secondOperand);
+            }
+            
+            if (secondOperand.length == 0 && secondOperand.length > 0) {
+                setSecondOperand("0");
+                setSecondOperand(button.id);
+                button.disabled = true;
+                console.log(firstOperand, operator, secondOperand);
+            }
         } else {
             setFirstOperand(button.id);
             console.log(firstOperand, operator, secondOperand);
