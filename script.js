@@ -77,6 +77,7 @@ function evaluateNumButtons(button) {
     if (button.id === "=") {
         if (firstOperand.length > 0 && secondOperand.length > 0 && operator) {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            if (secondOperand[0] == "(") secondOperand.shift();
             let secondOperandNum = stringnumberToNum(secondOperand.join(""));
             let result = operate(operator, firstOperandNum, secondOperandNum);
             calDisplay.textContent = result;
@@ -139,6 +140,7 @@ function evaluateOperatorButtons(button) {
             if (removedValue === ".") enableDotBttn();
         } else {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            if (secondOperand[0] == "(") secondOperand.shift();
             let secondOperandNum = stringnumberToNum(secondOperand.join(""));
             let result = operate(operator, firstOperandNum, secondOperandNum);
             calDisplay.textContent = result;
@@ -157,6 +159,7 @@ function evaluateOperatorButtons(button) {
         }
 
         if (button.id === "-") {
+            setSecondOperand("(");
             setSecondOperand(button.id);
         }
     }
