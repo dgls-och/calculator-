@@ -140,6 +140,12 @@ function evaluateOperatorButtons(button) {
         }
     }
 
+    if (firstOperand.length < 1 && secondOperand.length < 1 && !operator) {
+        if (button.id === "-") {
+            setFirstOperand(button.id);
+        }
+    }
+
     if (
         firstOperand.length > 0
         && secondOperand.length > 0
