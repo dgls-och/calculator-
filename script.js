@@ -49,13 +49,9 @@ function setOperator(operand) {
     calDisplay.textContent = operator;
 }
 
-function findSum(num1, num2) {
-    return num1 + num2;
-}
+function findSum(num1, num2) { return num1 + num2; }
 
-function findDifference(num1, num2) {
-    return num1 - num2;
-}
+function findDifference(num1, num2) { return num1 - num2; }
 
 function findQuotient(num1, num2) {
     if (num2 === 0) {
@@ -65,26 +61,16 @@ function findQuotient(num1, num2) {
     }
 }
 
-function findMultiple(num1, num2) {
-    return num1 * num2;
-}
+function findMultiple(num1, num2) { return num1 * num2; }
 
 function operate(operator, firstOperand, secondOperand) {
-    if (operator === "+") {
-        return findSum(firstOperand, secondOperand);
-    }
+    if (operator === "+") return findSum(firstOperand, secondOperand);
 
-    if (operator === "-") {
-        return findDifference(firstOperand, secondOperand);
-    }
+    if (operator === "-") return findDifference(firstOperand, secondOperand);
 
-    if (operator === "*") {
-        return findMultiple(firstOperand, secondOperand);
-    }
+    if (operator === "*") return findMultiple(firstOperand, secondOperand);
 
-    if (operator === "/") {
-        return findQuotient(firstOperand, secondOperand);
-    }
+    if (operator === "/") return findQuotient(firstOperand, secondOperand);
 }
 
 function evaluateNumButtons(button) {
@@ -141,9 +127,7 @@ function evaluateOperatorButtons(button) {
     }
 
     if (firstOperand.length < 1 && secondOperand.length < 1 && !operator) {
-        if (button.id === "-") {
-            setFirstOperand(button.id);
-        }
+        if (button.id === "-") setFirstOperand(button.id);
     }
 
     if (
