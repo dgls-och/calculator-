@@ -124,13 +124,9 @@ function evaluateOperatorButtons(button) {
             setOperator(button.id);
             enableDotBttn();
         }
-    }
-
-    if (firstOperand.length < 1 && secondOperand.length < 1 && !operator) {
+    } else if (firstOperand.length < 1 && secondOperand.length < 1 && !operator) {
         if (button.id === "-") setFirstOperand(button.id);
-    }
-
-    if (
+    } else if (
         firstOperand.length > 0
         && secondOperand.length > 0
         && (typeof operator) === "string"
@@ -150,9 +146,7 @@ function evaluateOperatorButtons(button) {
             firstOperand.push(result.toString());
             enableDotBttn();
         }
-    }
-
-    if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
+    } else if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
         if (button.id == "del") {
             if (calDisplay.textContent == 0) {
                 calDisplay.textContent = operator;
@@ -160,6 +154,10 @@ function evaluateOperatorButtons(button) {
                 operator = undefined;
                 calDisplay.textContent = firstOperand.join("");
             }
+        }
+
+        if (button.id === "-") {
+            setSecondOperand(button.id);
         }
     }
 }
