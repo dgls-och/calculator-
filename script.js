@@ -163,8 +163,12 @@ function evaluateOperatorButtons(button) {
         }
 
         if (button.id === "-") {
-            setSecondOperand("(");
-            setSecondOperand(button.id);
+            if (operator == "-") {
+                setSecondOperand("(");
+                setSecondOperand(button.id);
+            } else {
+                setSecondOperand(button.id);
+            }
         }
     }
 }
