@@ -86,7 +86,7 @@ function evaluateNumButtons(button) {
         }
     } else if (secondOperand.length == 0 && !operator) {
         if (button.id === ".") {
-            if (firstOperand.length == 0) {
+            if (firstOperand.length == 0 || firstOperand[0] == "-") {
                 setFirstOperand("0");
                 setFirstOperand(button.id);
                 button.disabled = true;
@@ -99,7 +99,11 @@ function evaluateNumButtons(button) {
         }
     } else if (firstOperand.length > 0 && operator) {
         if (button.id === ".") {
-            if (secondOperand.length < 1) {
+            if (
+                secondOperand.length < 1
+                || secondOperand[0] == "("
+                || secondOperand[0] == "-"
+            ) {
                 setSecondOperand("0");
                 setSecondOperand(button.id);
                 button.disabled = true;
