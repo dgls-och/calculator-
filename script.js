@@ -140,7 +140,7 @@ function evaluateOperatorButtons(button) {
             let removedValue = secondOperand.pop();
             let newValue = secondOperand.join("");
             calDisplay.textContent = secondOperand.length > 0
-                ? newValue : 0;
+                ? newValue : operator;
             if (removedValue === ".") enableDotBttn();
         } else {
             let firstOperandNum = stringnumberToNum(firstOperand.join(""));
@@ -154,9 +154,7 @@ function evaluateOperatorButtons(button) {
         }
     } else if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
         if (button.id == "del") {
-            if (calDisplay.textContent == 0) {
-                calDisplay.textContent = operator;
-            } else if (calDisplay.textContent == operator) {
+            if (calDisplay.textContent == operator) {
                 operator = undefined;
                 calDisplay.textContent = firstOperand.join("");
             }
