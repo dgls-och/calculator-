@@ -125,7 +125,12 @@ function evaluateOperatorButtons(button) {
             calDisplay.textContent = firstOperand.length > 0
                 ? newValue : "";
             if (removedValue === ".") enableDotBttn();
-        } else {
+        }
+
+        if (
+            !(firstOperand.length == "1" && firstOperand[0] == "-"
+                || firstOperand.length == "3" && firstOperand[2] == ".")
+        ) {
             setOperator(button.id);
             enableDotBttn();
         }
