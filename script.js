@@ -147,16 +147,23 @@ function evaluateOperatorButtons(button) {
             calDisplay.textContent = secondOperand.length > 0
                 ? newValue : operator;
             if (removedValue === ".") enableDotBttn();
-        } else {
-            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-            if (secondOperand[0] == "(") secondOperand.shift();
-            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-            let result = operate(operator, firstOperandNum, secondOperandNum);
-            calDisplay.textContent = result;
-            firstOperand = [], secondOperand = [], operator = button.id;
-            firstOperand.push(result.toString());
-            enableDotBttn();
-        }
+        } else
+
+            if (
+                !(secondOperand.length == "1" && secondOperand[0] == "-"
+                    || secondOperand.length == "2" && secondOperand[1] == "-"
+                    || secondOperand.length == "3" && secondOperand[2] == "."
+                    || secondOperand.length == "4" && secondOperand[3] == ".")
+            ) {
+                let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+                if (secondOperand[0] == "(") secondOperand.shift();
+                let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+                let result = operate(operator, firstOperandNum, secondOperandNum);
+                calDisplay.textContent = result;
+                firstOperand = [], secondOperand = [], operator = button.id;
+                firstOperand.push(result.toString());
+                enableDotBttn();
+            }
     } else if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
         if (button.id == "del") {
             if (calDisplay.textContent == operator) {
