@@ -76,13 +76,20 @@ function operate(operator, firstOperand, secondOperand) {
 function evaluateNumButtons(button) {
     if (button.id === "=") {
         if (firstOperand.length > 0 && secondOperand.length > 0 && operator) {
-            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-            if (secondOperand[0] == "(") secondOperand.shift();
-            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-            let result = operate(operator, firstOperandNum, secondOperandNum);
-            calDisplay.textContent = result;
-            firstOperand = [], secondOperand = [], operator = undefined;
-            enableDotBttn();
+            if (
+                !(secondOperand.length == "1" && secondOperand[0] == "-"
+                    || secondOperand.length == "2" && secondOperand[1] == "-"
+                    || secondOperand.length == "3" && secondOperand[2] == "."
+                    || secondOperand.length == "4" && secondOperand[3] == ".")
+            ) {
+                let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+                if (secondOperand[0] == "(") secondOperand.shift();
+                let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+                let result = operate(operator, firstOperandNum, secondOperandNum);
+                calDisplay.textContent = result;
+                firstOperand = [], secondOperand = [], operator = undefined;
+                enableDotBttn();
+            }
         }
     } else if (secondOperand.length == 0 && !operator) {
         if (button.id === ".") {
