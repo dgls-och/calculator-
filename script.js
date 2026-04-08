@@ -79,8 +79,7 @@ function evaluateNumButtons(button) {
             if (
                 !(secondOperand.length == "1" && secondOperand[0] == "-"
                     || secondOperand.length == "2" && secondOperand[1] == "-"
-                    || secondOperand.length == "3" && secondOperand[2] == "."
-                    || secondOperand.length == "4" && secondOperand[3] == ".")
+                    || secondOperand.slice(-1) == ".")
             ) {
                 let firstOperandNum = stringnumberToNum(firstOperand.join(""));
                 if (secondOperand[0] == "(") secondOperand.shift();
