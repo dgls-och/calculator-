@@ -107,8 +107,8 @@ function evaluateNumButtons(button) {
         if (button.id === ".") {
             if (
                 secondOperand.length < 1
-                || secondOperand[0] == "("
-                || secondOperand[0] == "-"
+                || secondOperand[0] == "(" && secondOperand.length == 2
+                || secondOperand[0] == "-" && secondOperand.length == 1
             ) {
                 setSecondOperand("0");
                 setSecondOperand(button.id);
