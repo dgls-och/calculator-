@@ -134,7 +134,7 @@ function evaluateOperatorButtons(button) {
             if (removedValue === ".") enableDotBttn();
         } else if (
             !(firstOperand.length == "1" && firstOperand[0] == "-"
-                || firstOperand.length == "3" && firstOperand[2] == ".")
+                || firstOperand.slice(-1) == ".")
         ) {
             setOperator(button.id);
             enableDotBttn();
@@ -157,8 +157,7 @@ function evaluateOperatorButtons(button) {
             if (
                 !(secondOperand.length == "1" && secondOperand[0] == "-"
                     || secondOperand.length == "2" && secondOperand[1] == "-"
-                    || secondOperand.length == "3" && secondOperand[2] == "."
-                    || secondOperand.length == "4" && secondOperand[3] == ".")
+                    || secondOperand.slice(-1) == ".")
             ) {
                 let firstOperandNum = stringnumberToNum(firstOperand.join(""));
                 if (secondOperand[0] == "(") secondOperand.shift();
@@ -175,7 +174,7 @@ function evaluateOperatorButtons(button) {
                 operator = undefined;
                 calDisplay.textContent = firstOperand.join("");
             }
-        }
+        } else
 
         if (button.id === "-") {
             if (operator == "-") {
