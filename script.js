@@ -152,31 +152,33 @@ function evaluateOperatorButtons(button) {
             calDisplay.textContent = secondOperand.length > 0
                 ? newValue : operator;
             if (removedValue === ".") enableDotBttn();
-        } else
-
-            if (
-                !(secondOperand.length == "1" && secondOperand[0] == "-"
-                    || secondOperand.length == "2" && secondOperand[1] == "-"
-                    || secondOperand.slice(-1) == ".")
-            ) {
-                let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-                if (secondOperand[0] == "(") secondOperand.shift();
-                let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-                let result = operate(operator, firstOperandNum, secondOperandNum);
-                calDisplay.textContent = result;
-                firstOperand = [], secondOperand = [], operator = button.id;
-                firstOperand.push(result.toString());
-                enableDotBttn();
-            }
+        } else if (
+            !(secondOperand.length == "1" && secondOperand[0] == "-"
+                || secondOperand.length == "2" && secondOperand[1] == "-"
+                || secondOperand.slice(-1) == ".")
+        ) {
+            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+            if (secondOperand[0] == "(") secondOperand.shift();
+            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+            let result = operate(operator, firstOperandNum, secondOperandNum);
+            calDisplay.textContent = result;
+            firstOperand = [], secondOperand = [], operator = button.id;
+            firstOperand.push(result.toString());
+            enableDotBttn();
+        }
     } else if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
         if (button.id == "del") {
             if (calDisplay.textContent == operator) {
                 operator = undefined;
+                let dot = ".";
+                for (let value of firstOperand) {
+                    if (dot.includes(value)) {
+                        document.querySelector("button[id='.']").disabled = true;
+                    }
+                }
                 calDisplay.textContent = firstOperand.join("");
             }
-        } else
-
-        if (button.id === "-") {
+        } else if (button.id === "-") {
             if (operator == "-") {
                 setSecondOperand("(");
                 setSecondOperand(button.id);
