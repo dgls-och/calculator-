@@ -12,7 +12,7 @@ body {
 
 .border, button {
     border: 1px solid;
-    border-radius: 16px;
+    /*border-radius: 16px;*/
 }
 
 #container {
@@ -31,6 +31,10 @@ body {
     text-align: right;
     padding: 64px 8px 0;
     overflow-x: auto;
+}
+
+.display, button {
+    box-shadow: 2px 2px;
 }
 
 .button-container {
