@@ -92,7 +92,7 @@ function evaluateNumButtons(button) {
         }
     } else if (secondOperand.length == 0 && !operator) {
         if (button.id === ".") {
-            if (firstOperand.length == 0 || firstOperand[0] == "-") {
+            if (firstOperand.length == 0 || firstOperand.length == 1 && firstOperand[0] == "-") {
                 setFirstOperand("0");
                 setFirstOperand(button.id);
                 button.disabled = true;
@@ -124,67 +124,71 @@ function evaluateNumButtons(button) {
 }
 
 function evaluateOperatorButtons(button) {
-    if (firstOperand.length > 0 && secondOperand.length == 0 && !operator) {
-        if (button.id === "del") {
-            let removedValue = firstOperand.pop();
-            let newValue = firstOperand.join("");
-            calDisplay.textContent = firstOperand.length > 0
-                ? newValue : "";
-            if (removedValue === ".") enableDotBttn();
-        } else if (
-            !(firstOperand.length == "1" && firstOperand[0] == "-"
-                || firstOperand.slice(-1) == ".")
-        ) {
-            setOperator(button.id);
-            enableDotBttn();
-        }
-    } else if (firstOperand.length < 1 && secondOperand.length < 1 && !operator) {
-        if (button.id === "-") setFirstOperand(button.id);
-    } else if (
-        firstOperand.length > 0
-        && secondOperand.length > 0
-        && (typeof operator) === "string"
-    ) {
-        if (button.id === "del") {
-            let removedValue = secondOperand.pop();
-            let newValue = secondOperand.join("");
-            calDisplay.textContent = secondOperand.length > 0
-                ? newValue : operator;
-            if (removedValue === ".") enableDotBttn();
-        } else if (
-            !(secondOperand.length == "1" && secondOperand[0] == "-"
-                || secondOperand.length == "2" && secondOperand[1] == "-"
-                || secondOperand.slice(-1) == ".")
-        ) {
-            let firstOperandNum = stringnumberToNum(firstOperand.join(""));
-            if (secondOperand[0] == "(") secondOperand.shift();
-            let secondOperandNum = stringnumberToNum(secondOperand.join(""));
-            let result = operate(operator, firstOperandNum, secondOperandNum);
-            calDisplay.textContent = result;
-            firstOperand = [], secondOperand = [], operator = button.id;
-            firstOperand.push(result.toString());
-            enableDotBttn();
-        }
-    } else if (firstOperand.length > 0 && operator && secondOperand.length == 0) {
-        if (button.id == "del") {
-            if (calDisplay.textContent == operator) {
-                operator = undefined;
-                let dot = ".";
-                for (let value of firstOperand) {
-                    if (dot.includes(value)) {
-                        document.querySelector("button[id='.']").disabled = true;
+    switch (true) {
+        case (firstOperand.length > 0 && secondOperand.length == 0 && !operator):
+            switch (true) {
+                case button.id === "del":
+                    let removedValue = firstOperand.pop();
+                    let newValue = firstOperand.join("");
+                    calDisplay.textContent = firstOperand.length > 0
+                        ? newValue : "";
+                    if (removedValue === ".") enableDotBttn();
+                    break;
+                case !(firstOperand.length == "1" && firstOperand[0] == "-"
+                    || firstOperand.slice(-1) == "."):
+                    setOperator(button.id);
+                    enableDotBttn();
+            }
+            break;
+        case firstOperand.length < 1 && secondOperand.length < 1 && !operator:
+            if (button.id === "-") setFirstOperand(button.id);
+            break;
+        case firstOperand.length > 0
+            && secondOperand.length > 0
+            && (typeof operator) === "string":
+            switch (true) {
+                case button.id === "del":
+                    let removedValue = secondOperand.pop();
+                    let newValue = secondOperand.join("");
+                    calDisplay.textContent = secondOperand.length > 0
+                        ? newValue : operator;
+                    if (removedValue === ".") enableDotBttn();
+                    break;
+                case !(secondOperand.length == "1" && secondOperand[0] == "-"
+                    || secondOperand.length == "2" && secondOperand[1] == "-"
+                    || secondOperand.slice(-1) == "."):
+                    let firstOperandNum = stringnumberToNum(firstOperand.join(""));
+                    if (secondOperand[0] == "(") secondOperand.shift();
+                    let secondOperandNum = stringnumberToNum(secondOperand.join(""));
+                    let result = operate(operator, firstOperandNum, secondOperandNum);
+                    calDisplay.textContent = result;
+                    firstOperand = [], secondOperand = [], operator = button.id;
+                    firstOperand.push(result.toString());
+                    enableDotBttn();
+            }
+            break;
+        case firstOperand.length > 0 && operator && secondOperand.length == 0:
+            switch (true) {
+                case button.id == "del":
+                    if (calDisplay.textContent == operator) {
+                        operator = undefined;
+                        let dot = ".";
+                        for (let value of firstOperand) {
+                            if (dot.includes(value)) {
+                                document.querySelector("button[id='.']").disabled = true;
+                            }
+                        }
+                        calDisplay.textContent = firstOperand.join("");
                     }
-                }
-                calDisplay.textContent = firstOperand.join("");
+                    break;
+                case button.id === "-":
+                    if (operator == "-") {
+                        setSecondOperand("(");
+                        setSecondOperand(button.id);
+                    } else {
+                        setSecondOperand(button.id);
+                    }
             }
-        } else if (button.id === "-") {
-            if (operator == "-") {
-                setSecondOperand("(");
-                setSecondOperand(button.id);
-            } else {
-                setSecondOperand(button.id);
-            }
-        }
     }
 }
 
