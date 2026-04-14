@@ -175,7 +175,8 @@ function evaluateOperatorButtons(button) {
                         let dot = ".";
                         for (let value of firstOperand) {
                             if (dot.includes(value)) {
-                                document.querySelector("button[id='.']").disabled = true;
+                                document.querySelector("button[id='.']")
+                                    .disabled = true;
                             }
                         }
                         calDisplay.textContent = firstOperand.join("");
