@@ -30,14 +30,14 @@ function stringnumberToNum(str) {
 
 function setFirstOperand(operand) {
     firstOperand.push(operand);
-    let firstOperandCopy = [...firstOperand];
-    calDisplay.textContent = firstOperandCopy.join("");
+    let firstOperandString = [...firstOperand].join("");
+    calDisplay.textContent = firstOperandString;
 }
 
 function setSecondOperand(operand) {
     secondOperand.push(operand);
-    let secondOperandCopy = [...secondOperand];
-    calDisplay.textContent = secondOperandCopy.join("");
+    let secondOperandString = [...secondOperand].join("");
+    calDisplay.textContent = secondOperandString;
 }
 
 function setOperator(operand) {
