@@ -7,11 +7,7 @@ let secondOperand = [];
 
 numButtons.forEach(button => button.addEventListener('click', e => {
     e.preventDefault();
-    if (button.id === "clear") {
-        clearAll();
-    } else {
-        evaluateNumButtons(button);
-    }
+    button.id === "clear" ? clearAll() : evaluateNumButtons(button);
 }));
 
 operatorButtons.forEach(button => button.addEventListener('click', e => {
